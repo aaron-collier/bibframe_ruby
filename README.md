@@ -1,35 +1,232 @@
 # BibframeRuby
 
-TODO: Delete this and the text below, and describe your gem
+A Ruby gem for parsing [BIBFRAME](https://www.loc.gov/bibframe/) data into Ruby objects. Currently supports JSON-LD, with Turtle and RDF/XML support planned.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bibframe_ruby`. To experiment with that code, run `bin/console` for an interactive prompt.
+Built on the [RDF.rb](https://github.com/ruby-rdf/rdf) ecosystem, BibframeRuby converts BIBFRAME documents into typed Ruby objects with idiomatic accessors and linked relationships.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add this line to your application's Gemfile:
 
-Install the gem and add to the application's Gemfile by executing:
-
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+```ruby
+gem "bibframe_ruby"
 ```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+And then execute:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle install
+```
+
+Or install it yourself as:
+
+```bash
+gem install bibframe_ruby
 ```
 
 ## Usage
 
-TODO: Write usage instructions here
+### Parsing JSON-LD
+
+```ruby
+require "bibframe_ruby"
+
+# Parse a JSON-LD string
+json = File.read("work.jsonld")
+graph = BibframeRuby.parse(json)
+
+# Or parse directly from a file (format detected from extension)
+graph = BibframeRuby.parse_file("work.jsonld")
+```
+
+### Accessing Resources
+
+The returned `Graph` provides typed collections:
+
+```ruby
+graph.works      # => [BibframeRuby::Work, ...]
+graph.instances  # => [BibframeRuby::Instance, ...]
+graph.items      # => [BibframeRuby::Item, ...]
+graph.resources  # => all parsed resources
+```
+
+### Working with a Work
+
+```ruby
+work = graph.works.first
+
+work.id
+# => "https://dev.bcld.info/works/25305194-1115-43ab-8a7c-4ef586a1e8e5"
+
+work.types
+# => ["Monograph", "Text", "Work"]
+
+work.title.main_title
+# => "The dungeon anarchist's cookbook"
+
+work.title.non_sort_num
+# => "4"
+
+work.language
+# => "http://id.loc.gov/vocabulary/languages/eng"
+
+work.genre_forms
+# => ["http://id.loc.gov/authorities/genreForms/gf2023026123", ...]
+
+work.summary
+# => "\"Welcome to the Gun Show! The top ten list is populated..."
+
+work.classifications.length
+# => 2
+```
+
+### Contributions
+
+```ruby
+contribution = work.contributions.first
+
+contribution.primary?
+# => true
+
+contribution.role
+# => "http://id.loc.gov/vocabulary/relators/aut"
+
+contribution.agent.id
+# => "http://id.loc.gov/rwo/agents/no2023085548"
+```
+
+### Working with an Instance
+
+When you parse both a Work and its Instance, the relationships are automatically linked:
+
+```ruby
+instance = graph.instances.first
+
+instance.title.main_title
+# => "The dungeon anarchist's cookbook"
+
+instance.extent
+# => "532 pages"
+
+instance.dimensions
+# => "24 cm"
+
+instance.edition_statement
+# => "First Ace edition"
+
+instance.publication_statement
+# => "New York: Ace, 2024"
+
+# Bidirectional linking
+instance.work.title.main_title
+# => "The dungeon anarchist's cookbook"
+
+work.instances.first == instance
+# => true
+```
+
+### Identifiers
+
+```ruby
+instance.identifiers.length
+# => 2
+
+lccn = instance.identifiers.find { |id| id.types.include?("Lccn") }
+isbn = instance.identifiers.find { |id| id.types.include?("Isbn") }
+```
+
+### Hash-Style Property Access
+
+Any property can be accessed by name, even if there is no named accessor:
+
+```ruby
+work["language"]
+# => "http://id.loc.gov/vocabulary/languages/eng"
+
+work["aap"]
+# => "Dinniman, Matt. The dungeon anarchist's cookbook"
+```
+
+### Combining Multiple Documents
+
+To parse related documents together (e.g., a Work and its Instance), combine their RDF graphs before building:
+
+```ruby
+work_graph = BibframeRuby::Parser.new(work_json, format: :jsonld).parse
+instance_graph = BibframeRuby::Parser.new(instance_json, format: :jsonld).parse
+
+# Merge statements into one graph
+instance_graph.each_statement { |s| work_graph << s }
+
+# Build with linked relationships
+result = BibframeRuby::Graph.from_rdf(work_graph)
+
+result.works.first.instances.first.extent
+# => "532 pages"
+```
+
+### Stub Resources
+
+When a parsed document references an external resource by URI (e.g., an agent in the Library of Congress), a stub `Resource` is created with just the `id` set:
+
+```ruby
+agent = work.contributions.first.agent
+agent.id
+# => "http://id.loc.gov/rwo/agents/no2023085548"
+
+agent.is_a?(BibframeRuby::Resource)
+# => true
+```
+
+## Model Reference
+
+| Class | Accessors |
+|-------|-----------|
+| `Resource` | `id`, `types`, `properties`, `[]`, `[]=` |
+| `Work` | `title`, `contributions`, `instances`, `language`, `subjects`, `genre_forms`, `summary`, `classifications`, `relations` |
+| `Instance` | `title`, `work`, `identifiers`, `extent`, `carrier`, `media`, `provision_activity`, `edition_statement`, `dimensions`, `publication_statement`, `items` |
+| `Item` | `instance`, `held_by`, `shelf_mark` |
+| `Contribution` | `agent`, `role`, `primary?` |
+| `Title` | `main_title`, `subtitle`, `non_sort_num` |
+| `Agent` | `label` |
+| `Person` | `label` (inherits from Agent) |
+| `Organization` | `label` (inherits from Agent) |
+| `Subject` | `label`, `source` |
+
+All models inherit from `Resource` and support hash-style access via `[]` for any property.
+
+## Supported Formats
+
+| Format | Status | File Extension |
+|--------|--------|----------------|
+| JSON-LD | Supported | `.jsonld` |
+| Turtle | Planned | `.ttl` |
+| RDF/XML | Planned | `.rdf` |
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+### Running Tests
+
+```bash
+bundle exec rspec
+```
+
+With documentation output:
+
+```bash
+bundle exec rspec --format documentation
+```
+
+### Console
+
+You can run `bin/console` for an interactive prompt to experiment with the gem.
+
+## Requirements
+
+- Ruby >= 3.2.0
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bibframe_ruby.
+Bug reports and pull requests are welcome on GitHub at https://github.com/aaron-collier/bibframe_ruby.
