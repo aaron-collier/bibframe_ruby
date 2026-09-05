@@ -119,7 +119,7 @@ module BibframeRuby
 
         types = extract_types(statements)
         klass = resolve_class(types)
-        type_names = types.map { |t| t.to_s.split("/").last }
+        type_names = types.map { |t| t.to_s.split(%r{[/#]}).last }
 
         resource = klass.new(
           id: subject.to_s,
@@ -152,12 +152,6 @@ module BibframeRuby
         prop_name = PROPERTY_MAP[stmt.predicate.to_s] || stmt.predicate.to_s.split(%r{[/#]}).last
         value = resolve_value(stmt.object, grouped, prop_name)
         next if value.nil?
-
-        # Special: mark Contributions as primary based on their types
-        if resource.is_a?(Contribution) && prop_name == "primary"
-          resource["primary"] = true
-          next
-        end
 
         if ARRAY_PROPERTIES.include?(prop_name)
           resource[prop_name] ||= []
@@ -199,7 +193,7 @@ module BibframeRuby
       sub_statements = grouped[node]
       types = extract_types(sub_statements)
       klass = resolve_class(types)
-      type_names = types.map { |t| t.to_s.split("/").last }
+      type_names = types.map { |t| t.to_s.split(%r{[/#]}).last }
 
       sub_resource = klass.new(types: type_names)
       populate_properties(sub_resource, sub_statements, grouped)
