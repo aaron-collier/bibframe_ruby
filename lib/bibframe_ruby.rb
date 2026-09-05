@@ -13,8 +13,20 @@ require_relative "bibframe_ruby/models/organization"
 require_relative "bibframe_ruby/models/subject"
 require_relative "bibframe_ruby/parser"
 require_relative "bibframe_ruby/graph_builder"
+require_relative "bibframe_ruby/graph"
 
 module BibframeRuby
   class Error < StandardError; end
-  # Your code goes here...
+
+  def self.parse(input, format: :jsonld)
+    rdf_graph = Parser.new(input, format: format).parse
+    Graph.from_rdf(rdf_graph)
+  end
+
+  def self.parse_file(path)
+    ext = File.extname(path)
+    format = Parser.format_for_extension(ext)
+    input = File.read(path)
+    parse(input, format: format)
+  end
 end
