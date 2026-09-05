@@ -1,0 +1,87 @@
+{
+  "@id": "https://dev.bcld.info/instances/4e0a7e08-b92a-46e5-8827-bdb635fef24a",
+  "@type": "Instance",
+  "media": {
+    "@id": "http://id.loc.gov/vocabulary/mediaTypes/n"
+  },
+  "title": {
+    "@type": "Title",
+    "mainTitle": "The dungeon anarchist's cookbook",
+    "bflc:nonSortNum": "4"
+  },
+  "extent": {
+    "@type": "Extent",
+    "rdfs:label": "532 pages"
+  },
+  "carrier": {
+    "@id": "http://id.loc.gov/vocabulary/carriers/nc"
+  },
+  "issuance": {
+    "@id": "http://id.loc.gov/vocabulary/issuance/mono"
+  },
+  "dimensions": "24 cm",
+  "instanceOf": "https://dev.bcld.info/works/25305194-1115-43ab-8a7c-4ef586a1e8e5",
+  "identifiedBy": [
+    {
+      "@type": "Lccn",
+      "rdf:value": "  2024014178"
+    },
+    {
+      "@type": "Isbn",
+      "qualifier": "hardcover",
+      "rdf:value": "9780593820285"
+    }
+  ],
+  "adminMetadata": [
+    {
+      "date": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-07-08T07:15:36.790127+00:00"
+      },
+      "@type": "AdminMetadata",
+      "agent": {
+        "@id": "http://id.loc.gov/vocabulary/organizations/bcld"
+      },
+      "status": {
+        "@id": "http://id.loc.gov/vocabulary/mstatus/c"
+      },
+      "derivedFrom": {
+        "@id": "http://id.loc.gov/resources/instances/23655353"
+      }
+    },
+    {
+      "date": "2026-07-08",
+      "@type": "AdminMetadata",
+      "bflc:catalogerId": "Unknown",
+      "descriptionLevel": {
+        "@id": "http://id.loc.gov/ontologies/bibframe-2-6-0/"
+      },
+      "descriptionLanguage": {
+        "@id": "http://id.loc.gov/vocabulary/languages/eng"
+      },
+      "descriptionAuthentication": {
+        "@id": "http://id.loc.gov/vocabulary/marcauthen/pcc"
+      }
+    }
+  ],
+  "editionStatement": "First Ace edition",
+  "provisionActivity": {
+    "date": {
+      "@type": "http://id.loc.gov/datatypes/edtf",
+      "@value": "2024"
+    },
+    "@type": [
+      "ProvisionActivity",
+      "Publication"
+    ],
+    "place": {
+      "@id": "http://id.loc.gov/vocabulary/countries/nyu"
+    },
+    "bflc:simpleDate": "2024",
+    "bflc:simpleAgent": "Ace",
+    "bflc:simplePlace": "New York"
+  },
+  "publicationStatement": "New York: Ace, 2024",
+  "responsibilityStatement": "Matt Dinniman",
+  "@context": "https://dev.bcld.info/api/context.jsonld"
+}

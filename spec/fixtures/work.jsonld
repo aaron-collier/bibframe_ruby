@@ -1,0 +1,127 @@
+{
+  "@id": "https://dev.bcld.info/works/25305194-1115-43ab-8a7c-4ef586a1e8e5",
+  "@type": [
+    "Monograph",
+    "Text",
+    "Work"
+  ],
+  "title": {
+    "@type": "Title",
+    "mainTitle": "The dungeon anarchist's cookbook",
+    "bflc:nonSortNum": "4"
+  },
+  "content": {
+    "@id": "http://id.loc.gov/vocabulary/contentTypes/txt"
+  },
+  "summary": {
+    "@type": "Summary",
+    "rdfs:label": "\"Welcome to the Gun Show! The top ten list is populated. The sponsorship program is open. The difficulty is ramping up. The first three floors were nothing compared to what Carl and Donut now face. The Iron Tangle. An impossibly-complicated subway system built out of the world's subterranean railway systems, all combined and then tied together into a knot. Up is down. Down is up. Close is far. The cars are filled with monsters, the railway stations are less than safe, and the exit is always just a few stops away. But there is hope. For the first time, the crawlers are all working together. The loot is better than ever. And the secret to unraveling it all may be hidden in the pages of a seemingly-useless book. Welcome, crawlers. Welcome to the fourth floor of the dungeon\"-- Provided by publisher."
+  },
+  "bflc:aap": "Dinniman, Matt. The dungeon anarchist's cookbook",
+  "language": {
+    "@id": "http://id.loc.gov/vocabulary/languages/eng"
+  },
+  "relation": {
+    "@type": "Relation",
+    "relationship": {
+      "@id": "http://id.loc.gov/vocabulary/relationship/series"
+    },
+    "seriesEnumeration": "Book three",
+    "associatedResource": {
+      "@type": [
+        "Series",
+        "bflc:Uncontrolled"
+      ],
+      "title": {
+        "@type": "Title",
+        "mainTitle": "Dungeon crawler Carl"
+      },
+      "status": {
+        "@id": "http://id.loc.gov/vocabulary/mstatus/t"
+      }
+    }
+  },
+  "genreForm": [
+    {
+      "@id": "http://id.loc.gov/authorities/genreForms/gf2023026123"
+    },
+    {
+      "@id": "http://id.loc.gov/authorities/genreForms/gf2015026020"
+    },
+    {
+      "@id": "http://id.loc.gov/authorities/genreForms/gf2014026339"
+    }
+  ],
+  "hasInstance": "https://dev.bcld.info/instances/4e0a7e08-b92a-46e5-8827-bdb635fef24a",
+  "contribution": {
+    "role": {
+      "@id": "http://id.loc.gov/vocabulary/relators/aut"
+    },
+    "@type": [
+      "Contribution",
+      "PrimaryContribution"
+    ],
+    "agent": {
+      "@id": "http://id.loc.gov/rwo/agents/no2023085548"
+    }
+  },
+  "adminMetadata": [
+    {
+      "date": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-07-08T07:15:36.770754+00:00"
+      },
+      "@type": "AdminMetadata",
+      "agent": {
+        "@id": "http://id.loc.gov/vocabulary/organizations/bcld"
+      },
+      "status": {
+        "@id": "http://id.loc.gov/vocabulary/mstatus/c"
+      },
+      "derivedFrom": {
+        "@id": "http://id.loc.gov/resources/works/23655353"
+      }
+    },
+    {
+      "date": "2026-07-08",
+      "@type": "AdminMetadata",
+      "bflc:catalogerId": "Unknown",
+      "descriptionLevel": {
+        "@id": "http://id.loc.gov/ontologies/bibframe-2-6-0/"
+      },
+      "descriptionLanguage": {
+        "@id": "http://id.loc.gov/vocabulary/languages/eng"
+      },
+      "descriptionAuthentication": {
+        "@id": "http://id.loc.gov/vocabulary/marcauthen/pcc"
+      }
+    }
+  ],
+  "classification": [
+    {
+      "@type": "ClassificationLcc",
+      "status": {
+        "@id": "http://id.loc.gov/vocabulary/mstatus/uba"
+      },
+      "assigner": {
+        "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+      },
+      "itemPortion": "D85 2024",
+      "classificationPortion": "PS3604.I49"
+    },
+    {
+      "@type": "ClassificationDdc",
+      "source": {
+        "code": "23/eng/20240423",
+        "@type": "Source"
+      },
+      "edition": "full",
+      "assigner": {
+        "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+      },
+      "classificationPortion": "813/.6"
+    }
+  ],
+  "bflc:aap-normalized": "dinnimanmattthedungeonanarchist'scookbook",
+  "@context": "https://dev.bcld.info/api/context.jsonld"
+}
