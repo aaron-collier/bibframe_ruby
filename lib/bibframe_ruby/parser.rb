@@ -1,0 +1,39 @@
+# frozen_string_literal: true
+
+require "rdf"
+require "json/ld"
+
+module BibframeRuby
+  class Parser
+    EXTENSION_MAP = {
+      ".jsonld" => :jsonld,
+      ".ttl" => :turtle,
+      ".rdf" => :rdfxml
+    }.freeze
+
+    READER_MAP = {
+      jsonld: JSON::LD::Reader
+    }.freeze
+
+    def initialize(input, format: :jsonld)
+      @input = input
+      @format = format
+    end
+
+    def parse
+      reader_class = READER_MAP.fetch(@format) do
+        raise BibframeRuby::Error, "Unsupported format: #{@format}"
+      end
+
+      graph = RDF::Graph.new
+      reader_class.new(@input) { |reader| graph << reader }
+      graph
+    end
+
+    def self.format_for_extension(ext)
+      EXTENSION_MAP.fetch(ext) do
+        raise BibframeRuby::Error, "Unknown file extension: #{ext}"
+      end
+    end
+  end
+end

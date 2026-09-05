@@ -11,6 +11,7 @@ require_relative "bibframe_ruby/models/agent"
 require_relative "bibframe_ruby/models/person"
 require_relative "bibframe_ruby/models/organization"
 require_relative "bibframe_ruby/models/subject"
+require_relative "bibframe_ruby/parser"
 
 module BibframeRuby
   class Error < StandardError; end
