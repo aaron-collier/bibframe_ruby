@@ -12,6 +12,7 @@ require_relative "bibframe_ruby/models/person"
 require_relative "bibframe_ruby/models/organization"
 require_relative "bibframe_ruby/models/subject"
 require_relative "bibframe_ruby/parser"
+require_relative "bibframe_ruby/graph_builder"
 
 module BibframeRuby
   class Error < StandardError; end
