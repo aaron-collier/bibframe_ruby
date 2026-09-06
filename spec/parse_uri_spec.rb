@@ -33,9 +33,40 @@ RSpec.describe BibframeRuby do
     it "raises on HTTP errors" do
       error_response = instance_double(Net::HTTPNotFound, code: "404", message: "Not Found")
       allow(error_response).to receive(:is_a?).with(Net::HTTPSuccess).and_return(false)
+      allow(error_response).to receive(:is_a?).with(Net::HTTPRedirection).and_return(false)
       allow(Net::HTTP).to receive(:get_response).and_return(error_response)
 
       expect { described_class.parse_uri(hub_uri) }.to raise_error(BibframeRuby::Error, /HTTP error: 404/)
+    end
+
+    it "follows HTTP redirects" do
+      redirect_uri = "http://id.loc.gov/resources/hubs/4076e139-793f-bb85-515c-840510066bac"
+      final_uri = "https://id.loc.gov/resources/hubs/4076e139-793f-bb85-515c-840510066bac.jsonld"
+
+      redirect_response = instance_double(Net::HTTPMovedPermanently)
+      allow(redirect_response).to receive(:is_a?).with(Net::HTTPSuccess).and_return(false)
+      allow(redirect_response).to receive(:is_a?).with(Net::HTTPRedirection).and_return(true)
+      allow(redirect_response).to receive(:[]).with("location").and_return(final_uri)
+
+      success_response = instance_double(Net::HTTPOK, body: hub_jsonld)
+      allow(success_response).to receive(:is_a?).with(Net::HTTPSuccess).and_return(true)
+
+      allow(Net::HTTP).to receive(:get_response).with(URI.parse(redirect_uri)).and_return(redirect_response)
+      allow(Net::HTTP).to receive(:get_response).with(URI.parse(final_uri)).and_return(success_response)
+
+      result = BibframeRuby.parse_uri(redirect_uri)
+      expect(result).to be_a(BibframeRuby::Graph)
+      expect(result.hubs.length).to be >= 1
+    end
+
+    it "raises on too many redirects" do
+      redirect_response = instance_double(Net::HTTPMovedPermanently)
+      allow(redirect_response).to receive(:is_a?).with(Net::HTTPSuccess).and_return(false)
+      allow(redirect_response).to receive(:is_a?).with(Net::HTTPRedirection).and_return(true)
+      allow(redirect_response).to receive(:[]).with("location").and_return(hub_uri)
+      allow(Net::HTTP).to receive(:get_response).and_return(redirect_response)
+
+      expect { BibframeRuby.parse_uri(hub_uri, redirect_limit: 0) }.to raise_error(BibframeRuby::Error, /Too many redirects/)
     end
 
     it "defaults to jsonld format when URI has no extension" do

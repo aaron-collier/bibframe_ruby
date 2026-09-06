@@ -33,16 +33,20 @@ module BibframeRuby
     parse(input, format: format)
   end
 
-  def self.parse_uri(uri)
+  def self.parse_uri(uri, redirect_limit: 5)
+    raise Error, "Too many redirects" if redirect_limit == 0
+
     parsed_uri = URI.parse(uri)
     response = Net::HTTP.get_response(parsed_uri)
 
-    unless response.is_a?(Net::HTTPSuccess)
+    if response.is_a?(Net::HTTPSuccess)
+      ext = File.extname(parsed_uri.path)
+      format = ext.empty? ? :jsonld : Parser.format_for_extension(ext)
+      parse(response.body, format: format)
+    elsif response.is_a?(Net::HTTPRedirection)
+      parse_uri(response["location"], redirect_limit: redirect_limit - 1)
+    else
       raise Error, "HTTP error: #{response.code} #{response.message}"
     end
-
-    ext = File.extname(parsed_uri.path)
-    format = ext.empty? ? :jsonld : Parser.format_for_extension(ext)
-    parse(response.body, format: format)
   end
 end
