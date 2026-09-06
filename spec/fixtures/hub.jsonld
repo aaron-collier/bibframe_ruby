@@ -1,0 +1,430 @@
+[
+  {
+    "@id": "http://id.loc.gov/vocabulary/mstatus/n",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Status"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "new"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/code": [
+      {
+        "@value": "n"
+      }
+    ]
+  },
+  {
+    "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Agent",
+      "http://id.loc.gov/ontologies/bibframe/Organization"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "United States, Library of Congress, Network Development and MARC Standards Office"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/code": [
+      {
+        "@type": "http://id.loc.gov/datatypes/orgs/code",
+        "@value": "DLC-MRC"
+      },
+      {
+        "@type": "http://id.loc.gov/datatypes/orgs/normalized",
+        "@value": "dlcmrc"
+      },
+      {
+        "@type": "http://id.loc.gov/datatypes/orgs/iso15511",
+        "@value": "US-dlcmrc"
+      }
+    ]
+  },
+  {
+    "@id": "_:b32httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Lccn"
+    ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#value": [
+      {
+        "@value": "no2026041760"
+      }
+    ]
+  },
+  {
+    "@id": "_:b61httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Contribution",
+      "http://id.loc.gov/ontologies/bibframe/PrimaryContribution"
+    ],
+    "http://id.loc.gov/ontologies/bibframe/agent": [
+      {
+        "@id": "http://id.loc.gov/rwo/agents/no2023085548"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/role": [
+      {
+        "@id": "http://id.loc.gov/vocabulary/relators/ctb"
+      }
+    ]
+  },
+  {
+    "@id": "http://id.loc.gov/vocabulary/relators/ctb",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Role"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "contributor"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/code": [
+      {
+        "@value": "ctb"
+      }
+    ]
+  },
+  {
+    "@id": "_:b40httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Note",
+      "http://id.loc.gov/vocabulary/mnotetype/descsource"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Simplified auth."
+      }
+    ]
+  },
+  {
+    "@id": "_:b46httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Relation"
+    ],
+    "http://id.loc.gov/ontologies/bibframe/relationship": [
+      {
+        "@id": "http://id.loc.gov/vocabulary/relationship/translatedas"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/associatedResource": [
+      {
+        "@id": "http://id.loc.gov/resources/hubs/e906f95c-e3a2-b29c-dcdf-a299532fc3bc"
+      }
+    ]
+  },
+  {
+    "@id": "_:b96httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/AdminMetadata"
+    ],
+    "http://id.loc.gov/ontologies/bibframe/status": [
+      {
+        "@id": "http://id.loc.gov/vocabulary/mstatus/c"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/agent": [
+      {
+        "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/generationProcess": [
+      {
+        "@id": "https://github.com/lcnetdev/marc2bibframe2/tree/v3.1-dev"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/date": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-04-16T05:14:31.459418-04:00"
+      }
+    ]
+  },
+  {
+    "@id": "_:b86httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/AdminMetadata"
+    ],
+    "http://id.loc.gov/ontologies/bibframe/status": [
+      {
+        "@id": "http://id.loc.gov/vocabulary/mstatus/n"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/date": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-04-15T00:00:00"
+      }
+    ]
+  },
+  {
+    "@id": "http://id.loc.gov/resources/hubs/4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Work",
+      "http://id.loc.gov/ontologies/bibframe/Hub",
+      "http://id.loc.gov/ontologies/bibframe/Series"
+    ],
+    "http://id.loc.gov/ontologies/bflc/aap": [
+      {
+        "@value": "Dinniman, Matt. Dungeon crawler Carl (Series)"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bflc/aap-normalized": [
+      {
+        "@value": "dinnimanmattdungeoncrawlercarl(series)"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/title": [
+      {
+        "@id": "_:b10httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/contribution": [
+      {
+        "@id": "_:b14httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bflc/marcKey": [
+      {
+        "@value": "1001 $aDinniman, Matt.$tDungeon crawler Carl (Series)."
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/identifiedBy": [
+      {
+        "@id": "_:b32httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      },
+      {
+        "@id": "_:b36httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/note": [
+      {
+        "@id": "_:b40httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      }
+    ],
+    "http://purl.org/dc/terms/isPartOf": [
+      {
+        "@id": "http://id.loc.gov/resources/hubs"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/relation": [
+      {
+        "@id": "_:b46httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/adminMetadata": [
+      {
+        "@id": "_:b86httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      },
+      {
+        "@id": "_:b96httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      },
+      {
+        "@id": "_:b118httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      }
+    ]
+  },
+  {
+    "@id": "_:b81httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/VariantTitle"
+    ],
+    "http://id.loc.gov/ontologies/bibframe/mainTitle": [
+      {
+        "@language": "und-latn",
+        "@value": "Carl el Mazmorrero (Series)"
+      }
+    ]
+  },
+  {
+    "@id": "http://id.loc.gov/vocabulary/mstatus/c",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Status"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "changed"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/code": [
+      {
+        "@value": "c"
+      }
+    ]
+  },
+  {
+    "@id": "_:b118httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/AdminMetadata"
+    ],
+    "http://id.loc.gov/ontologies/bibframe/descriptionLevel": [
+      {
+        "@id": "http://id.loc.gov/ontologies/bibframe-2-6-0/"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/identifiedBy": [
+      {
+        "@id": "_:b121httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      }
+    ]
+  },
+  {
+    "@id": "_:b121httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Local"
+    ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#value": [
+      {
+        "@value": "4076e139-793f-bb85-515c-840510066bac"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/assigner": [
+      {
+        "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+      }
+    ]
+  },
+  {
+    "@id": "http://id.loc.gov/vocabulary/organizations/dlc",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Organization"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "United States, Library of Congress"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/code": [
+      {
+        "@type": "http://id.loc.gov/datatypes/orgs/code",
+        "@value": "DLC"
+      },
+      {
+        "@type": "http://id.loc.gov/datatypes/orgs/normalized",
+        "@value": "dlc"
+      },
+      {
+        "@type": "http://id.loc.gov/datatypes/orgs/iso15511",
+        "@value": "US-dlc"
+      }
+    ]
+  },
+  {
+    "@id": "http://id.loc.gov/rwo/agents/no2023085548",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Agent",
+      "http://id.loc.gov/ontologies/bibframe/Person"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Dinniman, Matt"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bflc/marcKey": [
+      {
+        "@value": "1001 $aDinniman, Matt"
+      }
+    ]
+  },
+  {
+    "@id": "http://id.loc.gov/resources/hubs/e906f95c-e3a2-b29c-dcdf-a299532fc3bc",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Hub",
+      "http://id.loc.gov/ontologies/bibframe/Series"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Dinniman, Matt. Dungeon crawler Carl (Series). Spanish"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bflc/marcKey": [
+      {
+        "@value": "1001 $aDinniman, Matt.$tDungeon crawler Carl (Series).$lSpanish"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/contribution": [
+      {
+        "@id": "_:b61httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/title": [
+      {
+        "@id": "_:b77httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      },
+      {
+        "@id": "_:b81httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/language": [
+      {
+        "@id": "http://id.loc.gov/vocabulary/languages/spa"
+      }
+    ]
+  },
+  {
+    "@id": "_:b14httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Contribution",
+      "http://id.loc.gov/ontologies/bibframe/PrimaryContribution"
+    ],
+    "http://id.loc.gov/ontologies/bibframe/agent": [
+      {
+        "@id": "http://id.loc.gov/rwo/agents/no2023085548"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/role": [
+      {
+        "@id": "http://id.loc.gov/vocabulary/relators/ctb"
+      }
+    ]
+  },
+  {
+    "@id": "_:b10httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Title"
+    ],
+    "http://id.loc.gov/ontologies/bibframe/mainTitle": [
+      {
+        "@value": "Dungeon crawler Carl (Series)"
+      }
+    ]
+  },
+  {
+    "@id": "http://id.loc.gov/vocabulary/relationship/translatedas",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Relationship"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "translated as"
+      }
+    ],
+    "http://id.loc.gov/ontologies/bibframe/code": [
+      {
+        "@value": "translatedas"
+      }
+    ]
+  },
+  {
+    "@id": "_:b77httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Title"
+    ],
+    "http://id.loc.gov/ontologies/bibframe/mainTitle": [
+      {
+        "@value": "Dungeon crawler Carl (Series). Spanish"
+      }
+    ]
+  },
+  {
+    "@id": "_:b36httpc0liddOtlocdOtgovresourceshubs4076e139-793f-bb85-515c-840510066bac",
+    "@type": [
+      "http://id.loc.gov/ontologies/bibframe/Local"
+    ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#value": [
+      {
+        "@value": "oca17116326 "
+      }
+    ]
+  }
+]

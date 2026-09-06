@@ -2,12 +2,13 @@
 
 module BibframeRuby
   class Graph
-    attr_reader :works, :instances, :items, :resources
+    attr_reader :works, :instances, :items, :hubs, :resources
 
-    def initialize(works:, instances:, items:, resources:)
+    def initialize(works:, instances:, items:, hubs:, resources:)
       @works = works
       @instances = instances
       @items = items
+      @hubs = hubs
       @resources = resources
     end
 
@@ -17,6 +18,7 @@ module BibframeRuby
         works: result[:works],
         instances: result[:instances],
         items: result[:items],
+        hubs: result[:hubs],
         resources: result[:resources].values
       )
     end

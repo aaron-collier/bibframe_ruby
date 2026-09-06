@@ -8,6 +8,7 @@ module BibframeRuby
     RDFS_LABEL = RDF::RDFS.label.to_s
 
     TYPE_MAP = {
+      "#{BF}Hub" => Hub,
       "#{BF}Work" => Work,
       "#{BF}Instance" => Instance,
       "#{BF}Item" => Item,
@@ -100,7 +101,8 @@ module BibframeRuby
         resources: @resources,
         works: @resources.values.select { |r| r.is_a?(Work) },
         instances: @resources.values.select { |r| r.is_a?(Instance) },
-        items: @resources.values.select { |r| r.is_a?(Item) }
+        items: @resources.values.select { |r| r.is_a?(Item) },
+        hubs: @resources.values.select { |r| r.is_a?(Hub) }
       }
     end
 
@@ -138,9 +140,9 @@ module BibframeRuby
     end
 
     def resolve_class(types)
-      types.each do |type|
-        klass = TYPE_MAP[type.to_s]
-        return klass if klass
+      type_strings = types.map(&:to_s)
+      TYPE_MAP.each do |type_uri, klass|
+        return klass if type_strings.include?(type_uri)
       end
       Resource
     end
