@@ -37,6 +37,9 @@ graph = BibframeRuby.parse(json)
 
 # Or parse directly from a file (format detected from extension)
 graph = BibframeRuby.parse_file("work.jsonld")
+
+# Parse from a remote URI (fetches the content)
+graph = BibframeRuby.parse_uri("https://id.loc.gov/resources/hubs/4076e139-793f-bb85-515c-840510066bac.jsonld")
 ```
 
 ### Accessing Resources
@@ -47,6 +50,7 @@ The returned `Graph` provides typed collections:
 graph.works      # => [BibframeRuby::Work, ...]
 graph.instances  # => [BibframeRuby::Instance, ...]
 graph.items      # => [BibframeRuby::Item, ...]
+graph.hubs       # => [BibframeRuby::Hub, ...]
 graph.resources  # => all parsed resources
 ```
 
@@ -125,6 +129,30 @@ work.instances.first == instance
 # => true
 ```
 
+### Working with a Hub
+
+Hubs are abstract resources that bridge between Works — commonly used for authority-linked title/author combinations.
+
+```ruby
+graph = BibframeRuby.parse_file("hub.jsonld")
+hub = graph.hubs.first
+
+hub.id
+# => "http://id.loc.gov/resources/hubs/4076e139-793f-bb85-515c-840510066bac"
+
+hub.types
+# => ["Work", "Hub", "Series"]
+
+hub.title.main_title
+# => "Dungeon crawler Carl (Series)"
+
+hub.contributions.first.primary?
+# => true
+
+hub.relations.length
+# => 1
+```
+
 ### Identifiers
 
 ```ruby
@@ -185,6 +213,7 @@ agent.is_a?(BibframeRuby::Resource)
 | `Resource` | `id`, `types`, `properties`, `[]`, `[]=` |
 | `Work` | `title`, `contributions`, `instances`, `language`, `subjects`, `genre_forms`, `summary`, `classifications`, `relations` |
 | `Instance` | `title`, `work`, `identifiers`, `extent`, `carrier`, `media`, `provision_activity`, `edition_statement`, `dimensions`, `publication_statement`, `items` |
+| `Hub` | `title`, `contributions`, `language`, `identifiers`, `relations`, `label` |
 | `Item` | `instance`, `held_by`, `shelf_mark` |
 | `Contribution` | `agent`, `role`, `primary?` |
 | `Title` | `main_title`, `subtitle`, `non_sort_num` |
