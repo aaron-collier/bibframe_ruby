@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "net/http"
+require "uri"
 require_relative "bibframe_ruby/version"
 require_relative "bibframe_ruby/resource"
 require_relative "bibframe_ruby/models/title"
@@ -29,5 +31,18 @@ module BibframeRuby
     format = Parser.format_for_extension(ext)
     input = File.read(path)
     parse(input, format: format)
+  end
+
+  def self.parse_uri(uri)
+    parsed_uri = URI.parse(uri)
+    response = Net::HTTP.get_response(parsed_uri)
+
+    unless response.is_a?(Net::HTTPSuccess)
+      raise Error, "HTTP error: #{response.code} #{response.message}"
+    end
+
+    ext = File.extname(parsed_uri.path)
+    format = ext.empty? ? :jsonld : Parser.format_for_extension(ext)
+    parse(response.body, format: format)
   end
 end
