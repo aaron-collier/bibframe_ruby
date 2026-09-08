@@ -2,6 +2,7 @@
 
 require "rdf"
 require "json/ld"
+require "rdf/turtle"
 
 module BibframeRuby
   class Parser
@@ -12,7 +13,8 @@ module BibframeRuby
     }.freeze
 
     READER_MAP = {
-      jsonld: JSON::LD::Reader
+      jsonld: JSON::LD::Reader,
+      turtle: RDF::Turtle::Reader
     }.freeze
 
     def initialize(input, format: :jsonld)

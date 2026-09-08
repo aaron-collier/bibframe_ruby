@@ -1,0 +1,43 @@
+@prefix : <http://id.loc.gov/ontologies/bibframe/> .
+@prefix bflc: <http://id.loc.gov/ontologies/bflc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://dev.bcld.info/works/c3ab6105-cc37-45ad-b1d0-ca53528f395c> a :Work ;
+    rdfs:label "Bailey, Erold K., 1965-. Minority voices from the academic superstructure" ;
+    :adminMetadata [ a :AdminMetadata ;
+            :agent <http://id.loc.gov/vocabulary/organizations/bcld> ;
+            :date "2026-07-07T22:42:45.000892+00:00"^^xsd:dateTime ;
+            :derivedFrom <http://id.loc.gov/resources/works/23867832> ;
+            :status <http://id.loc.gov/vocabulary/mstatus/c> ],
+        [ a :AdminMetadata ;
+            bflc:catalogerId "Unknown" ;
+            :date "2026-07-07" ;
+            :descriptionAuthentication <http://id.loc.gov/vocabulary/marcauthen/pcc> ;
+            :descriptionLanguage <http://id.loc.gov/vocabulary/languages/eng> ;
+            :descriptionLevel <http://id.loc.gov/ontologies/bibframe-2-6-0/> ] ;
+    :classification [ a :ClassificationDdc ;
+            :assigner <http://id.loc.gov/vocabulary/organizations/dlc> ;
+            :classificationPortion "378.1/982996073" ;
+            :edition "full" ;
+            :source [ a :Source ;
+                    :code "23/eng/20240916" ] ],
+        [ a :ClassificationLcc ;
+            :assigner <http://id.loc.gov/vocabulary/organizations/dlc> ;
+            :classificationPortion "LC212.42" ;
+            :status <http://id.loc.gov/vocabulary/mstatus/uba> ] ;
+    :contribution [ a :Contribution,
+                :PrimaryContribution ;
+            :agent <http://id.loc.gov/rwo/agents/n2024048464> ;
+            :role <http://id.loc.gov/vocabulary/relators/aut> ],
+        [ a :Contribution ;
+            :agent <http://id.loc.gov/rwo/agents/n2022004889> ;
+            :role <http://id.loc.gov/vocabulary/relators/aut> ],
+        [ a :Contribution ;
+            :agent <http://id.loc.gov/rwo/agents/n2024048465> ;
+            :role <http://id.loc.gov/vocabulary/relators/aut> ] ;
+    :hasInstance <https://dev.bcld.info/instances/f60027f2-329a-4d2a-819c-baaf684c9492> ;
+    :language <http://id.loc.gov/vocabulary/languages/eng> ;
+    :title [ a :Title ;
+            :mainTitle "Minority voices from the academic superstructure" ] .
+
