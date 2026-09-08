@@ -70,7 +70,7 @@ module BibframeRuby
       "#{BF}descriptionLanguage" => "description_language",
       "#{BF}descriptionAuthentication" => "description_authentication",
       "#{BFLC}catalogerId" => "cataloger_id",
-      "#{BFLC}aap" => "aap",
+      "#{BFLC}aap" => "Authorized Access Point",
       "#{BFLC}aap-normalized" => "aap_normalized",
       "#{BFLC}simpleDate" => "simple_date",
       "#{BFLC}simpleAgent" => "simple_agent",

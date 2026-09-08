@@ -4,7 +4,7 @@ module BibframeRuby
   class Graph
     attr_reader :works, :instances, :items, :hubs, :resources
 
-    def initialize(works:, instances:, items:, hubs: [], resources:)
+    def initialize(works:, instances:, items:, resources:, hubs: [])
       @works = works
       @instances = instances
       @items = items

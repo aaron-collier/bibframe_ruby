@@ -37,5 +37,9 @@ module BibframeRuby
     def relations
       self["relations"] || []
     end
+
+    def aap
+      self["aap"]
+    end
   end
 end
