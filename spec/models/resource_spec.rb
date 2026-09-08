@@ -4,7 +4,7 @@ RSpec.describe BibframeRuby::Resource do
   subject(:resource) do
     described_class.new(
       id: "http://example.org/works/1",
-      types: ["Work", "Text"],
+      types: %w[Work Text],
       properties: { "title" => "Test Title" }
     )
   end
@@ -17,7 +17,7 @@ RSpec.describe BibframeRuby::Resource do
 
   describe "#types" do
     it "returns the type array" do
-      expect(resource.types).to eq(["Work", "Text"])
+      expect(resource.types).to eq(%w[Work Text])
     end
   end
 

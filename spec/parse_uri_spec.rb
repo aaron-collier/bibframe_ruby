@@ -66,7 +66,9 @@ RSpec.describe BibframeRuby do
       allow(redirect_response).to receive(:[]).with("location").and_return(hub_uri)
       allow(Net::HTTP).to receive(:get_response).and_return(redirect_response)
 
-      expect { BibframeRuby.parse_uri(hub_uri, redirect_limit: 0) }.to raise_error(BibframeRuby::Error, /Too many redirects/)
+      expect do
+        BibframeRuby.parse_uri(hub_uri, redirect_limit: 0)
+      end.to raise_error(BibframeRuby::Error, /Too many redirects/)
     end
 
     it "defaults to jsonld format when URI has no extension" do

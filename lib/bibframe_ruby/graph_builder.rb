@@ -168,12 +168,12 @@ module BibframeRuby
       end
 
       # Mark contribution as primary if PrimaryContribution is in its types
-      if resource.is_a?(Contribution)
-        types_uris = statements
-          .select { |s| s.predicate.to_s == RDF_TYPE }
-          .map { |s| s.object.to_s }
-        resource["primary"] = true if types_uris.include?("#{BF}PrimaryContribution")
-      end
+      return unless resource.is_a?(Contribution)
+
+      types_uris = statements
+                   .select { |s| s.predicate.to_s == RDF_TYPE }
+                   .map { |s| s.object.to_s }
+      resource["primary"] = true if types_uris.include?("#{BF}PrimaryContribution")
     end
 
     def resolve_value(object, grouped, prop_name = nil)
@@ -202,9 +202,7 @@ module BibframeRuby
       register_resource(node, sub_resource)
 
       # Collapse label-only resources to their string label
-      if LABEL_COLLAPSE_PROPERTIES.include?(prop_name) && sub_resource["label"]
-        return sub_resource["label"]
-      end
+      return sub_resource["label"] if LABEL_COLLAPSE_PROPERTIES.include?(prop_name) && sub_resource["label"]
 
       sub_resource
     end

@@ -4,7 +4,7 @@ RSpec.describe BibframeRuby::Hub do
   subject(:hub) do
     described_class.new(
       id: "http://id.loc.gov/resources/hubs/4076e139-793f-bb85-515c-840510066bac",
-      types: ["Work", "Hub", "Series"],
+      types: %w[Work Hub Series],
       properties: {
         "title" => title,
         "contributions" => [contribution],

@@ -4,7 +4,7 @@ RSpec.describe BibframeRuby::Work do
   subject(:work) do
     described_class.new(
       id: "http://example.org/works/1",
-      types: ["Work", "Text"],
+      types: %w[Work Text],
       properties: {
         "title" => title,
         "language" => "http://id.loc.gov/vocabulary/languages/eng",

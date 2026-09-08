@@ -34,7 +34,7 @@ module BibframeRuby
   end
 
   def self.parse_uri(uri, redirect_limit: 5)
-    raise Error, "Too many redirects" if redirect_limit == 0
+    raise Error, "Too many redirects" if redirect_limit.zero?
 
     parsed_uri = URI.parse(uri)
     response = Net::HTTP.get_response(parsed_uri)
