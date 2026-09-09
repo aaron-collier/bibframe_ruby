@@ -2,5 +2,5 @@
 
 # BibframeRuby::VERSION: Gem version constant
 module BibframeRuby
-  VERSION = "0.1.0"
+  VERSION = "0.1.1"
 end
