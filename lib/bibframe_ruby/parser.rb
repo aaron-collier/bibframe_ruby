@@ -3,6 +3,7 @@
 require "json/ld"
 require "rdf"
 require "rdf/turtle"
+require "rdf/rdfxml"
 
 # BibframeRuby::Parser: Converts serialized RDF input into an RDF graph
 module BibframeRuby
@@ -16,7 +17,8 @@ module BibframeRuby
 
     READER_MAP = {
       jsonld: JSON::LD::Reader,
-      turtle: RDF::Turtle::Reader
+      turtle: RDF::Turtle::Reader,
+      rdfxml: RDF::RDFXML::Reader
     }.freeze
 
     def initialize(input, format: :jsonld)

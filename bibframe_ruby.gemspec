@@ -40,6 +40,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rdf"
   spec.add_dependency "rdf-rdfxml"
   spec.add_dependency "rdf-turtle"
+  spec.add_dependency "marc"
+  spec.add_dependency "nokogiri"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://guides.rubygems.org/make-your-own-gem/
