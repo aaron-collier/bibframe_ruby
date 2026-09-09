@@ -193,6 +193,26 @@ result.works.first.instances.first.extent
 # => "532 pages"
 ```
 
+### Converting from MARC
+
+Convert MARC records (binary MARC21 or MARCXML) to BIBFRAME using the Library of Congress [marc2bibframe2](https://github.com/lcnetdev/marc2bibframe2) XSLT stylesheets:
+
+```ruby
+# Convert a binary MARC file
+graph = BibframeRuby.convert_marc("record.mrc")
+
+# With a custom base URI for minted resource URIs
+graph = BibframeRuby.convert_marc("record.mrc", baseuri: "https://mylib.org/catalog/")
+
+# MARCXML is also accepted
+graph = BibframeRuby.convert_marc("record.xml", baseuri: "https://mylib.org/catalog/")
+
+graph.works.first.title.main_title
+# => "The Title"
+```
+
+The `baseuri` parameter controls the base URI for generated resource identifiers (default: `http://example.org/`). The optional `idsource` parameter identifies the converting agent.
+
 ### Stub Resources
 
 When a parsed document references an external resource by URI (e.g., an agent in the Library of Congress), a stub `Resource` is created with just the `id` set:
@@ -231,6 +251,8 @@ All models inherit from `Resource` and support hash-style access via `[]` for an
 | JSON-LD | Supported | `.jsonld` |
 | Turtle | Planned | `.ttl` |
 | RDF/XML | Planned | `.rdf` |
+| MARC21 (binary) | Supported (convert) | `.mrc` |
+| MARCXML | Supported (convert) | `.xml` |
 
 ## Development
 
