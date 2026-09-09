@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe BibframeRuby::GraphBuilder do
-  let(:hub_jsonld) { File.read(File.join(__dir__, "fixtures/hub.jsonld")) }
+  let(:hub_jsonld) { read_fixture("hub.jsonld") }
   let(:rdf_graph) { BibframeRuby::Parser.new(hub_jsonld, format: :jsonld).parse }
   let(:result) { described_class.new(rdf_graph).build }
 

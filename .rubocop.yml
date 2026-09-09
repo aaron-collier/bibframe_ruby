@@ -1,8 +1,21 @@
+inherit_from: .rubocop_todo.yml
+
+plugins:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-rspec_rails
+
 AllCops:
   TargetRubyVersion: 3.2
+  NewCops: enable
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
+
+RSpec/MultipleExpectations:
+  Enabled: false

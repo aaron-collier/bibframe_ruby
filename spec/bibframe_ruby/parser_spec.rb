@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe BibframeRuby::Parser do
-  let(:work_jsonld) { File.read(File.join(__dir__, "fixtures/work.jsonld")) }
+  let(:work_jsonld) { read_fixture("work.jsonld") }
 
   describe "#parse" do
     it "returns an RDF::Graph" do

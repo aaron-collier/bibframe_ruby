@@ -4,7 +4,7 @@ require "net/http"
 
 RSpec.describe BibframeRuby do
   describe ".parse_uri" do
-    let(:hub_jsonld) { File.read(File.join(__dir__, "fixtures/hub.jsonld")) }
+    let(:hub_jsonld) { read_fixture("hub.jsonld") }
     let(:hub_uri) { "http://id.loc.gov/resources/hubs/4076e139-793f-bb85-515c-840510066bac.jsonld" }
 
     before do
@@ -54,7 +54,7 @@ RSpec.describe BibframeRuby do
       allow(Net::HTTP).to receive(:get_response).with(URI.parse(redirect_uri)).and_return(redirect_response)
       allow(Net::HTTP).to receive(:get_response).with(URI.parse(final_uri)).and_return(success_response)
 
-      result = BibframeRuby.parse_uri(redirect_uri)
+      result = described_class.parse_uri(redirect_uri)
       expect(result).to be_a(BibframeRuby::Graph)
       expect(result.hubs.length).to be >= 1
     end
@@ -67,7 +67,7 @@ RSpec.describe BibframeRuby do
       allow(Net::HTTP).to receive(:get_response).and_return(redirect_response)
 
       expect do
-        BibframeRuby.parse_uri(hub_uri, redirect_limit: 0)
+        described_class.parse_uri(hub_uri, redirect_limit: 0)
       end.to raise_error(BibframeRuby::Error, /Too many redirects/)
     end
 

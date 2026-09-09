@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe BibframeRuby::Graph do
-  let(:work_jsonld) { File.read(File.join(__dir__, "fixtures/work.jsonld")) }
-  let(:instance_jsonld) { File.read(File.join(__dir__, "fixtures/instance.jsonld")) }
+  let(:work_jsonld) { read_fixture("work.jsonld") }
+  let(:instance_jsonld) { read_fixture("instance.jsonld") }
 
   describe ".from_rdf" do
     it "creates a Graph from an RDF::Graph" do

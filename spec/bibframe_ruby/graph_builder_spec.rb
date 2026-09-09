@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe BibframeRuby::GraphBuilder do
-  let(:work_jsonld) { File.read(File.join(__dir__, "fixtures/work.jsonld")) }
+  let(:work_jsonld) { read_fixture("work.jsonld") }
   let(:rdf_graph) { BibframeRuby::Parser.new(work_jsonld, format: :jsonld).parse }
   let(:result) { described_class.new(rdf_graph).build }
 
@@ -97,7 +97,7 @@ RSpec.describe BibframeRuby::GraphBuilder do
   end
 
   context "with combined work and instance data" do
-    let(:instance_jsonld) { File.read(File.join(__dir__, "fixtures/instance.jsonld")) }
+    let(:instance_jsonld) { read_fixture("instance.jsonld") }
     let(:combined_graph) do
       graph = rdf_graph
       BibframeRuby::Parser.new(instance_jsonld, format: :jsonld).parse.each_statement { |s| graph << s }

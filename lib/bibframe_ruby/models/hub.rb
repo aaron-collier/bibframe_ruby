@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# BibframeRuby::Hub: A BIBFRAME Hub resource
 module BibframeRuby
+  # Represents a BIBFRAME Hub — an abstract bridge resource connecting related Works.
   class Hub < Resource
     def title
       self["title"]

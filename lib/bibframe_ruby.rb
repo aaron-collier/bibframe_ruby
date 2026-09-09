@@ -18,6 +18,7 @@ require_relative "bibframe_ruby/parser"
 require_relative "bibframe_ruby/graph_builder"
 require_relative "bibframe_ruby/graph"
 
+# BibframeRuby: Main entry point for parsing BIBFRAME data into Ruby objects
 module BibframeRuby
   class Error < StandardError; end
 

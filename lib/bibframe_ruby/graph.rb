@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# BibframeRuby::Graph: Container for parsed BIBFRAME resources with typed collection accessors
 module BibframeRuby
+  # Container returned by BibframeRuby.parse that holds all parsed resources with typed collection accessors.
   class Graph
     attr_reader :works, :instances, :items, :hubs, :resources
 

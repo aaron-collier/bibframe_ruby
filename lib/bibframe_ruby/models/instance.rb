@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# BibframeRuby::Instance: A BIBFRAME Instance resource
 module BibframeRuby
+  # Represents a BIBFRAME Instance — a specific embodiment of a Work.
   class Instance < Resource
     def title
       self["title"]

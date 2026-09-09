@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# BibframeRuby::GraphBuilder: Hydrates RDF triples into typed Ruby model objects
 module BibframeRuby
+  # Walks an RDF::Graph to instantiate typed model objects, populate their properties, and link relationships.
   class GraphBuilder
     BF = "http://id.loc.gov/ontologies/bibframe/"
     BFLC = "http://id.loc.gov/ontologies/bflc/"
@@ -99,10 +101,10 @@ module BibframeRuby
 
       {
         resources: @resources,
-        works: @resources.values.select { |r| r.is_a?(Work) },
-        instances: @resources.values.select { |r| r.is_a?(Instance) },
-        items: @resources.values.select { |r| r.is_a?(Item) },
-        hubs: @resources.values.select { |r| r.is_a?(Hub) }
+        works: @resources.values.grep(Work),
+        instances: @resources.values.grep(Instance),
+        items: @resources.values.grep(Item),
+        hubs: @resources.values.grep(Hub)
       }
     end
 
@@ -180,11 +182,10 @@ module BibframeRuby
       case object
       when RDF::Node
         resolve_blank_node(object, grouped, prop_name)
-      when RDF::URI
-        object.to_s
       when RDF::Literal
         object.object.to_s
       else
+        # Works for RDF::URI and other unexpected object types
         object.to_s
       end
     end
@@ -219,7 +220,7 @@ module BibframeRuby
     end
 
     def link_work_instances
-      @resources.values.select { |r| r.is_a?(Work) }.each do |work|
+      @resources.values.grep(Work).each do |work|
         next unless work["instances"]
 
         work["instances"] = work["instances"].map do |ref|
@@ -228,7 +229,7 @@ module BibframeRuby
         end
       end
 
-      @resources.values.select { |r| r.is_a?(Instance) }.each do |instance|
+      @resources.values.grep(Instance).each do |instance|
         next unless instance["work"]
 
         uri = instance["work"].is_a?(String) ? instance["work"] : instance["work"].id
@@ -237,7 +238,7 @@ module BibframeRuby
     end
 
     def link_instance_items
-      @resources.values.select { |r| r.is_a?(Instance) }.each do |instance|
+      @resources.values.grep(Instance).each do |instance|
         next unless instance["items"]
 
         instance["items"] = instance["items"].map do |ref|
@@ -246,7 +247,7 @@ module BibframeRuby
         end
       end
 
-      @resources.values.select { |r| r.is_a?(Item) }.each do |item|
+      @resources.values.grep(Item).each do |item|
         next unless item["instance"]
 
         uri = item["instance"].is_a?(String) ? item["instance"] : item["instance"].id
@@ -256,7 +257,7 @@ module BibframeRuby
 
     def replace_uri_stubs
       # Replace any remaining string URI references in contribution agents
-      @resources.values.select { |r| r.is_a?(Contribution) }.each do |contrib|
+      @resources.values.grep(Contribution).each do |contrib|
         next unless contrib["agent"].is_a?(String)
 
         contrib["agent"] = @resources[contrib["agent"]] || stub_for(contrib["agent"])

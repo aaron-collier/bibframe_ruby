@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# BibframeRuby::Resource: Base class for all BIBFRAME resource types
 module BibframeRuby
+  # Base class for all BIBFRAME resources. Provides URI identity, type tracking, and hash-style property access.
   class Resource
     attr_reader :id, :types
     attr_accessor :properties

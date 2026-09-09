@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
-require "rdf"
 require "json/ld"
+require "rdf"
 require "rdf/turtle"
 
+# BibframeRuby::Parser: Converts serialized RDF input into an RDF graph
 module BibframeRuby
+  # Parses serialized RDF input (JSON-LD, Turtle) into an RDF::Graph using the appropriate reader.
   class Parser
     EXTENSION_MAP = {
       ".jsonld" => :jsonld,

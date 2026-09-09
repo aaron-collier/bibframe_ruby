@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# BibframeRuby::Work: A BIBFRAME Work resource
 module BibframeRuby
+  # Represents a BIBFRAME Work — the intellectual content of a bibliographic resource.
   class Work < Resource
     def title
       self["title"]
