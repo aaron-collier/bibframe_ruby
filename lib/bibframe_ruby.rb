@@ -35,6 +35,12 @@ module BibframeRuby
     parse(input, format: format)
   end
 
+  def self.convert_marc(path, baseuri: "http://example.org/", idsource: "http://id.loc.gov/vocabulary/organizations/dlc")
+    input = File.read(path)
+    rdfxml = MarcConverter.new(input, baseuri: baseuri, idsource: idsource).convert
+    parse(rdfxml, format: :rdfxml)
+  end
+
   def self.parse_uri(uri, redirect_limit: 5)
     raise Error, "Too many redirects" if redirect_limit.zero?
 
