@@ -7,7 +7,7 @@ require "rdf/rdfxml"
 
 # BibframeRuby::Parser: Converts serialized RDF input into an RDF graph
 module BibframeRuby
-  # Parses serialized RDF input (JSON-LD, Turtle) into an RDF::Graph using the appropriate reader.
+  # Parses serialized RDF input (JSON-LD, Turtle, RDF/XML) into an RDF::Graph using the appropriate reader.
   class Parser
     EXTENSION_MAP = {
       ".jsonld" => :jsonld,

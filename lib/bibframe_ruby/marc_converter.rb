@@ -11,8 +11,10 @@ module BibframeRuby
   class MarcConverter
     XSL_DIR = File.expand_path("../../vendor/marc2bibframe2/xsl", __dir__)
     XSL_PATH = File.join(XSL_DIR, "marc2bibframe2.xsl")
+    # Mutex to serialise Dir.chdir calls — Dir.chdir is process-global and not thread-safe.
+    CHDIR_MUTEX = Mutex.new
 
-    def initialize(input, baseuri: "http://example.org/", idsource: nil)
+    def initialize(input, baseuri: "http://example.org/", idsource: "http://id.loc.gov/vocabulary/organizations/dlc")
       @input = input
       @baseuri = baseuri
       @idsource = idsource
@@ -44,14 +46,21 @@ module BibframeRuby
       params = ["baseuri", "\"#{@baseuri}\""]
       params += ["idsource", "\"#{@idsource}\""] if @idsource
 
-      Dir.chdir(XSL_DIR) do
-        self.class.stylesheet.transform(doc, params)
+      # Ensure the stylesheet is loaded (and its Dir.chdir released) before we
+      # acquire CHDIR_MUTEX again for the transform call.
+      sheet = self.class.stylesheet
+      CHDIR_MUTEX.synchronize do
+        Dir.chdir(XSL_DIR) do
+          sheet.transform(doc, params)
+        end
       end
     end
 
     def self.stylesheet
-      @stylesheet ||= Dir.chdir(XSL_DIR) do
-        Nokogiri::XSLT(File.read(XSL_PATH))
+      @stylesheet ||= CHDIR_MUTEX.synchronize do
+        Dir.chdir(XSL_DIR) do
+          Nokogiri::XSLT(File.read(XSL_PATH))
+        end
       end
     end
   end

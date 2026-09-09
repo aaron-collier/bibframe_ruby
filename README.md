@@ -249,8 +249,8 @@ All models inherit from `Resource` and support hash-style access via `[]` for an
 | Format | Status | File Extension |
 |--------|--------|----------------|
 | JSON-LD | Supported | `.jsonld` |
-| Turtle | Planned | `.ttl` |
-| RDF/XML | Planned | `.rdf` |
+| Turtle | Supported | `.ttl` |
+| RDF/XML | Supported | `.rdf` |
 | MARC21 (binary) | Supported (convert) | `.mrc` |
 | MARCXML | Supported (convert) | `.xml` |
 
