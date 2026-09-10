@@ -226,11 +226,29 @@ agent.is_a?(BibframeRuby::Resource)
 # => true
 ```
 
+### Serializing to RDF
+
+Serialize a graph or individual resource back to JSON-LD or Turtle:
+
+```ruby
+# Serialize the entire graph to JSON-LD (default)
+puts graph.to_rdf
+
+# Serialize to Turtle
+puts graph.to_rdf(format: :turtle)
+
+# Serialize a single resource (includes its nested blank nodes)
+puts work.to_rdf
+puts work.to_rdf(format: :turtle)
+```
+
+Output includes BIBFRAME-aware prefixes (`bf:`, `bflc:`, `rdfs:`, etc.) for readable output.
+
 ## Model Reference
 
 | Class | Accessors |
 |-------|-----------|
-| `Resource` | `id`, `types`, `properties`, `[]`, `[]=` |
+| `Resource` | `id`, `types`, `properties`, `[]`, `[]=`, `to_rdf` |
 | `Work` | `title`, `contributions`, `instances`, `language`, `subjects`, `genre_forms`, `summary`, `classifications`, `relations` |
 | `Instance` | `title`, `work`, `identifiers`, `extent`, `carrier`, `media`, `provision_activity`, `edition_statement`, `dimensions`, `publication_statement`, `items` |
 | `Hub` | `title`, `contributions`, `language`, `identifiers`, `relations`, `label` |
