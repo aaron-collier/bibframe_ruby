@@ -38,6 +38,7 @@ Gem::Specification.new do |spec|
   # spec.add_dependency "example-gem", "~> 1.0"
   spec.add_dependency "json-ld"
   spec.add_dependency "rdf"
+  spec.add_dependency "rdf-isomorphic"
   spec.add_dependency "rdf-rdfxml"
   spec.add_dependency "rdf-turtle"
   spec.add_dependency "marc"

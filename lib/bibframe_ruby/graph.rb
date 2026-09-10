@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
+require "rdf/isomorphic"
 
 # BibframeRuby::Graph: Container for parsed BIBFRAME resources with typed collection accessors
 module BibframeRuby
@@ -28,6 +29,10 @@ module BibframeRuby
       @hubs = hubs
       @resources = resources
       @rdf_graph = rdf_graph
+    end
+
+    def ==(other)
+      other.is_a?(Graph) && @rdf_graph.isomorphic_with?(other.rdf_graph)
     end
 
     def to_rdf(format: :jsonld)
